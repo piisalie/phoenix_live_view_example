@@ -3,11 +3,11 @@ defmodule Demo.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :username, :string
-    field :email, :string
-    field :phone_number, :string
-    field :password, :string, virtual: true
-    field :password_confirmation, :string, virtual: true
+    field(:username, :string)
+    field(:email, :string)
+    field(:phone_number, :string)
+    field(:password, :string, virtual: true)
+    field(:password_confirmation, :string, virtual: true)
 
     timestamps()
   end
@@ -20,7 +20,7 @@ defmodule Demo.Accounts.User do
     |> cast(attrs, [:username, :email, :phone_number, :password])
     |> validate_required([:username, :email, :phone_number])
     |> validate_confirmation(:password)
-    |> validate_format(:username, ~r/^[a-zA-Z0-9_]*$/,
+    |> validate_format(:username, ~r/^[a-zA-Z0-9_-]*$/,
       message: "only letters, numbers, and underscores please"
     )
     |> validate_length(:username, max: 12)

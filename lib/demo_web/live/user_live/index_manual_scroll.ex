@@ -1,18 +1,16 @@
 defmodule DemoWeb.UserLive.IndexManualScroll do
   use Phoenix.LiveView
 
+  import DemoWeb.UserView, only: [render_user: 1, table: 1]
+
   def render(assigns) do
     ~L"""
-    <table>
-      <tbody phx-update="append" id="users">
+    <table style="visibility: hidden;">
+      <%= table do %>
         <%= for user <- @users do %>
-          <tr class="user-row" id="user-<%= user.id %>" phx-hook="Row">
-            <td><%= user.username %></td>
-            <td><%= user.email %></td>
-          </tr>
+          <%= render_user(user) %>
         <% end %>
-      </tbody>
-    </table>
+      <% end %>
     <form phx-submit="load-more">
       <button phx-disable-with="loading...">more</button>
     </form>

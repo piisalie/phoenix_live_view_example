@@ -35,6 +35,7 @@ defmodule Demo.Mixfile do
     [
       {:phoenix, "~> 1.4.9"},
       {:phoenix_live_view, "~> 0.2"},
+      {:floki, ">= 0.0.0", only: :test},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.8"},
       {:phoenix_pubsub, "~> 1.1"},
